@@ -1,6 +1,5 @@
 package com.example.springtest.model;
 
-import com.example.springtest.dto.MemberRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
