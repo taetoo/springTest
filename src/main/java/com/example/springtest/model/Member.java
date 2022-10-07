@@ -1,5 +1,7 @@
 package com.example.springtest.model;
 
+import com.example.springtest.dto.MemberResponseDto;
+import io.swagger.annotations.Api;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,10 +26,11 @@ public class Member {
     private String pw;
 
     // 생성자
-//    public Member(MemberRequestDto requestDto) {
-//        this.name = requestDto.getName();
-//        this.email = requestDto.getEmail();
-//        this.pw = requestDto.getPw();
-//    }
+    public Member(MemberResponseDto responsetDto) {
+        this.id = responsetDto.getId();
+        this.name = responsetDto.getName();
+        this.email = responsetDto.getEmail();
+        this.pw = responsetDto.getPw();
+    }
 
 }
