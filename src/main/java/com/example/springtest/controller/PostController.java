@@ -1,10 +1,7 @@
 package com.example.springtest.controller;
 
 import com.example.springtest.apiFormat.ApiResult;
-import com.example.springtest.apiFormat.ApiUtils;
 import com.example.springtest.dto.PostResponseDto;
-import com.example.springtest.model.Post;
-import com.example.springtest.repository.PostRepository;
 import com.example.springtest.service.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@Api(value = "Member entity api", tags = {"Member"})
+@Api(value = "Member entity api", tags = {"Post"})
 public class PostController {
 
     private final PostService postService;
