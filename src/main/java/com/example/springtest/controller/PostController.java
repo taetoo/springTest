@@ -60,15 +60,3 @@ public class PostController {
 
 
 }
-
-// 커스텀 Exception
-
-
-//    @GetMapping("/api/member")
-//    public String members(Member member)  {
-//        if (member.getId() == null) {
-//            throw new CustomException(EMPTY_CLIENT);
-//        }
-//        return memberService.getMembers().toString();
-//
-//    }
