@@ -9,15 +9,12 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PostResponseDto {
-
     private LocalDateTime createAt;
-
     private LocalDateTime modifiedAt;
     private Long id;
     private String title;
     private String content;
     private String author;
-
 
     public PostResponseDto(Post post) {
         this.id = post.getId();
