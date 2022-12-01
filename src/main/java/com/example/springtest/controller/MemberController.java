@@ -23,6 +23,7 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
 
+
     // 회원 전체 조회
     @ApiOperation(value = "회원 전체 조회", notes = "전체 회원을 조회하기 위한 api 입니다.")
     @GetMapping("/api/member")
@@ -44,6 +45,7 @@ public class MemberController {
     public ApiResult<Member> summitPost(@RequestBody MemberResponseDto responseDto){
         return ApiUtils.success(memberService.summitPost(responseDto));
     }
+
 
 }
 

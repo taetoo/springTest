@@ -3,12 +3,16 @@ package com.example.springtest.service;
 import com.example.springtest.apiFormat.ApiResult;
 import com.example.springtest.apiFormat.ApiUtils;
 import com.example.springtest.dto.MemberResponseDto;
+import com.example.springtest.exception.CustomException;
 import com.example.springtest.model.Member;
 import com.example.springtest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
