@@ -16,7 +16,7 @@ import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,9 +36,8 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant("/**"))
                 .build()
-                .securityContexts(Arrays.asList(securityContext()))
-                .securitySchemes(Arrays.asList(apiKey()))
-                ;
+                .securityContexts(Collections.singletonList(securityContext()))
+                .securitySchemes(Collections.singletonList(apiKey()));
     }
 
     private ApiKey apiKey() {
@@ -59,7 +58,7 @@ public class SwaggerConfig {
         AuthorizationScope authorizationScope = new AuthorizationScope(AUTHORIZATION_SCOPE_GLOBAL, AUTHORIZATION_SCOPE_GLOBAL_DESC);
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference(SECURITY_SCHEMA_NAME, authorizationScopes));
+        return Collections.singletonList(new SecurityReference(SECURITY_SCHEMA_NAME, authorizationScopes));
     }
 
     @Bean
@@ -72,8 +71,8 @@ public class SwaggerConfig {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title("[SPRING TEST] REST API")
-                .description("[SPRING TEST] BackEnd REST API Details")
+                .title("[Spring Test] TEST REST API")
+                .description("[SpringBasic] BackEnd Rest API Test")
                 .version("1.0")
                 .build();
     }
