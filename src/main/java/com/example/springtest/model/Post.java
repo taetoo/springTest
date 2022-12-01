@@ -1,5 +1,6 @@
 package com.example.springtest.model;
 
+import com.example.springtest.dto.PostRequestDto;
 import com.example.springtest.dto.PostResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,20 +29,18 @@ public class Post extends Timestamped{
     private String password;
 
     // 생성자
-    public Post(PostResponseDto responsetDto) {
-        this.id = responsetDto.getId();
-        this.title = responsetDto.getTitle();
-        this.content = responsetDto.getContent();
-        this.author = responsetDto.getAuthor();
-        this.password = responsetDto.getPassword();
+    public Post(PostRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.author = requestDto.getAuthor();
+        this.password = requestDto.getPassword();
     }
 
-    public void updatePost(PostResponseDto responseDto){
-//        this.id = responseDto.getId();
-        this.title = responseDto.getTitle();
-        this.content = responseDto.getContent();
-        this.author = responseDto.getAuthor();
-        this.password = responseDto.getPassword();
+    public void updatePost(PostRequestDto requestDto){
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.author = requestDto.getAuthor();
+        this.password = requestDto.getPassword();
 
     }
 

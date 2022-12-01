@@ -1,6 +1,7 @@
 package com.example.springtest.controller;
 
 import com.example.springtest.apiFormat.ApiResult;
+import com.example.springtest.dto.PostRequestDto;
 import com.example.springtest.dto.PostResponseDto;
 import com.example.springtest.service.PostService;
 import io.swagger.annotations.Api;
@@ -36,22 +37,22 @@ public class PostController {
     // 게시물 생성
     @ApiOperation(value = "게시물 생성", notes = "게시물을 생성하는 api 입니다.")
     @PostMapping("/api/post")
-    public ApiResult<PostResponseDto> summitPost(@RequestBody PostResponseDto responseDto){
-        return postService.summitPost(responseDto);
+    public ApiResult<PostResponseDto> summitPost(@RequestBody PostRequestDto requestDto){
+        return postService.summitPost(requestDto);
     }
 
     // 게시물 수정
     @ApiOperation(value = "게시물 수정", notes = "게시물을 수정하는 api 입니다.")
     @PutMapping("/api/post/{id}")
-    public ApiResult<PostResponseDto> updatePost(@PathVariable Long id, @RequestBody PostResponseDto responseDto){
-        return postService.updatePost(id, responseDto);
+    public ApiResult<?> updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
+        return postService.updatePost(id, requestDto);
     }
 
     // 게시물 삭제
     @ApiOperation(value = "게시물 삭제", notes = "게시물을 수정하는 api 입니다.")
     @DeleteMapping("/api/post/{id}")
-    public ApiResult<?> deletePost(@PathVariable Long id, @RequestBody PostResponseDto responseDto){
-        return postService.deletePost(id, responseDto);
+    public ApiResult<?> deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
+        return postService.deletePost(id, requestDto);
     }
 
 

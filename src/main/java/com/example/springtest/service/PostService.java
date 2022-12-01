@@ -2,6 +2,7 @@ package com.example.springtest.service;
 
 import com.example.springtest.apiFormat.ApiResult;
 import com.example.springtest.apiFormat.ApiUtils;
+import com.example.springtest.dto.PostRequestDto;
 import com.example.springtest.dto.PostResponseDto;
 import com.example.springtest.exception.CustomException;
 import com.example.springtest.exception.ErrorCode;
@@ -41,34 +42,40 @@ public class PostService {
     }
 
     // 게시물 등록
-    public ApiResult<PostResponseDto> summitPost(PostResponseDto responseDto) {
-        Post post = new Post(responseDto);
+    public ApiResult<PostResponseDto> summitPost(PostRequestDto requestDto) {
+        Post post = new Post(requestDto);
         postRepository.save(post);
+        PostResponseDto responseDto = new PostResponseDto(post);
         return ApiUtils.success(responseDto);
     }
 
 
     // 게시물 수정
     @Transactional
-    public ApiResult<PostResponseDto> updatePost(Long id, PostResponseDto dto) {
+    public ApiResult<?> updatePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new CustomException(ErrorCode.NOT_FOUND_DATA)
         );
-        post.updatePost(dto);
-        PostResponseDto responseDto = new PostResponseDto(post);
-        return ApiUtils.success(responseDto);
+        if(post.getPassword().equals(requestDto.getPassword())){
+            post.updatePost(requestDto);
+            PostResponseDto responseDto = new PostResponseDto(post);
+            return ApiUtils.success(responseDto);
+        } else {
+            return ApiUtils.error("비밀번호를 확인해주세요.",444);
+        }
+
 
     }
 
     // 게시물 삭제
     @Transactional
-    public ApiResult<?> deletePost(Long id, PostResponseDto responseDto) {
+    public ApiResult<?> deletePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new CustomException(ErrorCode.EMPTY_CLIENT)
         );
-        if(post.getPassword().equals(responseDto.getPassword())){
+        if(post.getPassword().equals(requestDto.getPassword())){
             postRepository.deleteById(id);
-           return ApiUtils.success("success");
+           return ApiUtils.success("삭제완료!");
         } else{
             return ApiUtils.error("비밀번호를 확인해주세요.",444);
         }
