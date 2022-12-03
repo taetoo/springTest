@@ -21,6 +21,7 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
 
+    // 테스트 입니다.
     // 전체 게시물 조회
     public ApiResult<List<PostResponseDto>> getMembers() {
         List<Post> postAll = postRepository.findAllByOrderByModifiedAtDesc();
