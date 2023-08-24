@@ -14,6 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/test")
 @Api(value = "Member entity api", tags = {"Post"})
 public class PostController {
 
@@ -21,14 +22,14 @@ public class PostController {
 
     // 게시물 전체 조회
     @ApiOperation(value = "전체 게시물 조회", notes = "전체 게시물을 조회하기 위한 api 입니다.")
-    @GetMapping("/api/posts")
+    @GetMapping("/posts")
     public ApiResult<List<PostResponseDto>> getMembers()  {
         return postService.getMembers();
 
     }
     // 특정 게시물 조회
     @ApiOperation(value = "특정 게시물 조회", notes = "특정 게시물을 조회하기 위한 api 입니다.")
-    @GetMapping("/api/post/{id}")
+    @GetMapping("/post/{id}")
     public ApiResult<PostResponseDto> getFindMembers(@PathVariable Long id) {
 //        return ApiUtils.success(postRepository.findById(id));
         return postService.getMember(id);
@@ -36,21 +37,21 @@ public class PostController {
 
     // 게시물 생성
     @ApiOperation(value = "게시물 생성", notes = "게시물을 생성하는 api 입니다.")
-    @PostMapping("/api/post")
+    @PostMapping("/post")
     public ApiResult<PostResponseDto> summitPost(@RequestBody PostRequestDto requestDto){
         return postService.summitPost(requestDto);
     }
 
     // 게시물 수정
     @ApiOperation(value = "게시물 수정", notes = "게시물을 수정하는 api 입니다.")
-    @PutMapping("/api/post/{id}")
+    @PutMapping("/post/{id}")
     public ApiResult<?> updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
         return postService.updatePost(id, requestDto);
     }
 
     // 게시물 삭제
     @ApiOperation(value = "게시물 삭제", notes = "게시물을 수정하는 api 입니다.")
-    @DeleteMapping("/api/post/{id}")
+    @DeleteMapping("/post/{id}")
     public ApiResult<?> deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
         return postService.deletePost(id, requestDto);
     }
